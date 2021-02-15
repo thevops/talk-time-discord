@@ -52,8 +52,12 @@ def create_channels(ctx, num):
 
         # if channel_name not exists then create
         if channel_name not in current_channels:
-            print("Create channel:", channel_name)
-            #await ctx.guild.create_voice_channel(channel_name)
+            try:
+                print("Create channel:", channel_name)
+                #await ctx.guild.create_voice_channel(channel_name)
+            except:
+                print("Creating voice channel error!!!")
+                exit(1)
 
         # add to output list
         output_channels.append(channel_name)
@@ -80,8 +84,12 @@ async def start_talk_time(ctx):
     for group, channel in zip(groups, channels):
         print("Group: \n\t{} => Channel: {}".format(' '.join([i.name for i in group]), channel))
         for member in group:
-            print("Move {} to {}".format(member, channel))
-            #await member.move_to(channel)
+            try:
+                print("Move {} to {}".format(member, channel))
+                #await member.move_to(channel)
+            except:
+                print("Moving error!!!")
+                exit(1)
 
     await ctx.send("Talk Time started!")
 
