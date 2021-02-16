@@ -44,23 +44,28 @@ def split_groups(members):
 ###################################################
 
 def create_channels(ctx, num):
-    current_channels = [ c.name for c in ctx.guild.voice_channels ]
+    current_channels_dict = { c.name: c for c in ctx.guild.voice_channels } # { channel_name: channel_object, ...}
+    current_channels_names = current_channels_dict.keys()
 
     output_channels = []
     for i in range(num):
         channel_name = "Talk Time #{}".format(str(i+1))
 
         # if channel_name not exists then create
-        if channel_name not in current_channels:
+        if channel_name not in current_channels_names:
+            # create new channel
             try:
                 print("Create channel:", channel_name)
-                #await ctx.guild.create_voice_channel(channel_name)
+                new_channel = await ctx.guild.create_voice_channel(channel_name)
             except:
                 print("Creating voice channel error!!!")
                 exit(1)
+        else:
+            # get channel from dict
+            new_channel = current_channels_dict[channel_name]
 
         # add to output list
-        output_channels.append(channel_name)
+        output_channels.append(new_channel)
 
     return output_channels
 
@@ -82,11 +87,11 @@ async def start_talk_time(ctx):
 
     # divide into groups
     for group, channel in zip(groups, channels):
-        print("Group: \n\t{} => Channel: {}".format(' '.join([i.name for i in group]), channel))
+        print("Group: \n\t{} => Channel: {}".format(' '.join([i.name for i in group]), channel.name))
         for member in group:
             try:
                 print("Move {} to {}".format(member, channel))
-                #await member.move_to(channel)
+                await member.move_to(channel)
             except:
                 print("Moving error!!!")
                 exit(1)
