@@ -79,6 +79,10 @@ async def on_ready():
 async def start_talk_time(ctx):
 
     members = ctx.message.mentions # get members from mentions in command -> #talk-time-start @member1 @member2 ...
+    if len(members) < 4:
+        await ctx.send("Not enough members. I need at least 4")
+        return
+
     required_channels = len(members) // 2 # 2 members per one channel (if odd then one channel will contain 3 members)
 
     groups = split_groups(members) # create 2 person groups
