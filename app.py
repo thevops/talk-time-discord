@@ -43,7 +43,7 @@ def split_groups(members):
 #                 DISCORD
 ###################################################
 
-def create_channels(ctx, num):
+async def create_channels(ctx, num):
     current_channels_dict = { c.name: c for c in ctx.guild.voice_channels } # { channel_name: channel_object, ...}
     current_channels_names = current_channels_dict.keys()
 
@@ -75,11 +75,16 @@ async def on_ready():
     print('My name is: {0.user}\n'.format(bot))
 
 
+@bot.command(name='talk-time-echo')
+async def hello(ctx, arg):
+    await ctx.send(arg)
+
+
 @bot.command(name='talk-time-start')
 async def start_talk_time(ctx):
 
     members = ctx.message.mentions # get members from mentions in command -> #talk-time-start @member1 @member2 ...
-    if len(members) < 4:
+    if len(members) < 2:
         await ctx.send("Not enough members. I need at least 4")
         return
 
@@ -87,11 +92,11 @@ async def start_talk_time(ctx):
 
     groups = split_groups(members) # create 2 person groups
 
-    channels = create_channels(ctx, required_channels)
+    channels = await create_channels(ctx, required_channels)
 
     # divide into groups
     for group, channel in zip(groups, channels):
-        print("Group: \n\t{} => Channel: {}".format(' '.join([i.name for i in group]), channel.name))
+        print("Group: \n\t{} => Channel: {}".format(' '.join([i.name for i in group]), channel))
         for member in group:
             try:
                 print("Move {} to {}".format(member, channel))
