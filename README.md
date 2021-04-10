@@ -3,7 +3,7 @@
 Connect people by creating voice channels with two-person groups.
 
 
-# Best for
+## Best for
 
 - team/group integration
 - speed dating
