@@ -3,6 +3,12 @@
 Connect people by creating voice channels with two-person groups.
 
 
+# Best for
+
+- team/group integration
+- speed dating
+- discussion meetings
+
 ## How to use it?
 
 1. Add bot to your channel
