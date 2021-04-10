@@ -1,34 +1,34 @@
-# Talk Time Discord bot
+> English version [here](README.en.md)
 
-Connect people by creating voice channels with two-person groups.
+# Talk Time - bot dla Discord
+
+Integruj ludzi tworząc dwuosobowe czaty głosowe.
 
 
-## Best for
+## Najlepsze dla
 
-- team/group integration
+- integracje zespołowe/grupowe
 - speed dating
-- discussion meetings
+- spotkania dyskusyjne
 
-## How to use it?
+## Jak używać bota?
 
-1. Add bot to your channel
-2. Get the people together on **some** voice channel (minimum 4 persons)
+1. Dodaj bota do swojego serwera
+2. Zbierz ludzi na jakimś (tym samym) kanale **głosowym** (minimum 4 osoby)
 
-   `Every person should be IN some voice channel`
-3. Type a command:
+   `Każda z osób musi być wewnątrz jakiegoś kanału głosowego`
+3. Wydaj polecenie:
    ```
-    #talk-time-start @person1 @person2 @person3 @person4 .....
+    #talk-time-start @osoba1 @osoba2 @osoba3 @osoba4 .....
    ```
-   Mention every person that take part in event.
+   Wspomnij każdą osobę, która bierze udział.
 
-Bot will create necessary voice channels and divide people into 2-person groups in this channels.
+Bot stworzy potrzebne kanały głosowe, podzieli ludzi na 2 osobowe grupy i przeniesie ich do odpowiednich kanałów.
 
-In case of odd number of people, the last group will have 3 persons.
+W przypadku nieparzystej liczby uczestników, ostatnia grupa będzie liczyła 3 osoby.
 
+## Jak uruchomić aplikacja z użyciem Dockera?
 
-## How to run app? - Docker Way
-
-1. Provide DISCORD_TOKEN in `.env` file
-2. Run: `make build`
-3. Run: `make run`
-
+1. Uzupełnij wartość DISCORD_TOKEN w pliku  `.env` na podstawie szablonu `.env.example`
+2. Wykonaj: `make build`
+3. Wykonaj: `make run`
